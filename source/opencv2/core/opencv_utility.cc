@@ -32,8 +32,8 @@ void opencv_utility_init(int module_number){
  * @param return_value
  */
 PHP_FUNCTION(opencv_get_tick_count){
-    long tick_count = getTickCount();
-    RETURN_LONG(tick_count);
+    //long tick_count = static_cast<long>(cv::getTickCount());
+    //RETURN_LONG(tick_count);
 }
 
 
@@ -42,7 +42,8 @@ PHP_FUNCTION(opencv_get_tick_count){
  * @param execute_data
  * @param return_value
  */
+ 
 PHP_FUNCTION(opencv_get_tick_frequency){
-    double tick_frequency = getTickFrequency();
-    RETURN_DOUBLE(tick_frequency);
+	//double tick_frequency = static_cast<double>(cv::getTickFrequency());
+	///RETURN_DOUBLE(tick_frequency);
 }

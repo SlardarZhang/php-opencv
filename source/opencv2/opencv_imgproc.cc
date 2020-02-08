@@ -139,7 +139,7 @@ PHP_FUNCTION (opencv_fill_poly) {
     long lineType = LINE_8, shift = 0;
     zval *img_zval, *color_zval, *offset_point_zval = NULL;
     zval *points_zval;
-    opencv_point_object *offset_object;
+    //opencv_point_object *offset_object;
     if (zend_parse_parameters(ZEND_NUM_ARGS(), "OaO|llz",
                               &img_zval, opencv_mat_ce,
                               &points_zval,

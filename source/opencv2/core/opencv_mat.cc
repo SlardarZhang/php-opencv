@@ -32,7 +32,7 @@ zend_class_entry *opencv_mat_ce;
  */
 zend_object* opencv_mat_create_handler(zend_class_entry *type)
 {
-    int size = sizeof(opencv_mat_object) + zend_object_properties_size(type);
+    int size = static_cast<int>(sizeof(opencv_mat_object) + zend_object_properties_size(type));
     opencv_mat_object *obj = (opencv_mat_object *)ecalloc(1,size);
     memset(obj, 0, size);
     zend_object_std_init(&obj->std, type);
@@ -47,7 +47,7 @@ void opencv_mat_free_obj(zend_object *object)
 {
     opencv_mat_object *obj;
     obj = get_mat_obj(object);
-    delete obj->mat;
+    //delete obj->mat;
     zend_object_std_dtor(object);
 }
 
@@ -63,6 +63,7 @@ void opencv_mat_update_property_by_c_mat(zval *z,Mat *mat){
  * @param execute_data
  * @param return_value
  */
+
 PHP_METHOD(opencv_mat, __construct)
 {
     long rows, cols, type;
@@ -84,9 +85,9 @@ PHP_METHOD(opencv_mat, __construct)
     }else{
         scalar=Scalar(0);
     }
-    Mat M((int)rows, (int)cols, (int)type);
+    //Mat M(static_cast<int>(rows), static_cast<int>(cols), static_cast<int>(type));
 //    obj->mat = new Mat(M);
-    obj->mat = new Mat((int)rows, (int)cols, (int)type, scalar);
+//    obj->mat = new Mat((int)rows, (int)cols, (int)type, scalar);
     //obj->mat = new Mat((int)rows, (int)cols, (int)type); //TODO Why Mat array not correct
     opencv_mat_update_property_by_c_mat(getThis(), obj->mat);
 }
@@ -95,7 +96,7 @@ PHP_METHOD(opencv_mat, __construct)
  * print Mat data
  * @param execute_data
  * @param return_value
- */
+ 
 PHP_METHOD(opencv_mat, print)
 {
     long type = Formatter::FMT_DEFAULT;
@@ -110,6 +111,7 @@ PHP_METHOD(opencv_mat, print)
 
     RETURN_NULL();
 }
+*/
 
 
 PHP_METHOD(opencv_mat, type)
@@ -117,6 +119,8 @@ PHP_METHOD(opencv_mat, type)
     opencv_mat_object *obj = Z_PHP_MAT_OBJ_P(getThis());
     RETURN_LONG(obj->mat->type());
 }
+
+
 
 PHP_METHOD(opencv_mat, depth)
 {
@@ -135,7 +139,7 @@ PHP_METHOD(opencv_mat, empty)
     opencv_mat_object *obj = Z_PHP_MAT_OBJ_P(getThis());
     RETURN_LONG(obj->mat->empty());
 }
-
+/*
 PHP_METHOD(opencv_mat, ones)
 {
     long rows, cols, flags;
@@ -193,14 +197,15 @@ PHP_METHOD(opencv_mat, zeros_by_size)
     opencv_mat_update_property_by_c_mat(&instance, obj->mat);
 
     RETURN_ZVAL(&instance,0,0);
-}
+}*/
 
 
 /**
  * Mat->clone()
  * @param execute_data
  * @param return_value
- */
+ 
+
 PHP_METHOD(opencv_mat, clone)
 {
     zval instance;
@@ -220,7 +225,7 @@ PHP_METHOD(opencv_mat, clone)
  * Mat->isContinuous
  * @param execute_data
  * @param return_value
- */
+
 PHP_METHOD(opencv_mat, is_continuous)
 {
     opencv_mat_object *obj = Z_PHP_MAT_OBJ_P(getThis());
@@ -232,7 +237,7 @@ PHP_METHOD(opencv_mat, is_continuous)
  * Mat->isSubmatrix
  * @param execute_data
  * @param return_value
- */
+
 PHP_METHOD(opencv_mat, is_submatrix)
 {
     opencv_mat_object *obj = Z_PHP_MAT_OBJ_P(getThis());
@@ -244,7 +249,7 @@ PHP_METHOD(opencv_mat, is_submatrix)
  * Mat->row(y)
  * @param execute_data
  * @param return_value
- */
+
 PHP_METHOD(opencv_mat, row)
 {
     long y;
@@ -267,7 +272,7 @@ PHP_METHOD(opencv_mat, row)
  * Mat->col(x)
  * @param execute_data
  * @param return_value
- */
+
 PHP_METHOD(opencv_mat, col)
 {
     long x;
@@ -291,7 +296,7 @@ PHP_METHOD(opencv_mat, col)
  * Mat->getImageROI(x)
  * @param execute_data
  * @param return_value
- */
+
 PHP_METHOD(opencv_mat, get_image_roi)
 {
     zval *rect_zval;
@@ -329,7 +334,7 @@ ZEND_END_ARG_INFO()
  * Mat->copyTo(Mat $mat,Mat $mask=NULL)
  * @param execute_data
  * @param return_value
- */
+
 PHP_METHOD(opencv_mat, copy_to)
 {
     zval *m_zval, *mask_zval = nullptr;
@@ -378,7 +383,7 @@ PHP_METHOD(opencv_mat, copy_to)
  * CV\Mat->at
  * @param execute_data
  * @param return_value
- */
+
 PHP_METHOD(opencv_mat, at)
 {
     long row, col, channel;
@@ -471,7 +476,7 @@ ZEND_END_ARG_INFO()
  * CV\Mat->convertTo
  * @param execute_data
  * @param return_value
- */
+
 PHP_METHOD(opencv_mat, convert_to){
     zval *dst_zval;
     long rtype;
@@ -522,7 +527,7 @@ PHP_METHOD(opencv_mat, size)
  * Mat->plus()
  * @param execute_data
  * @param return_value
- */
+
 PHP_METHOD(opencv_mat, plus)
 {
     zval instance;
@@ -546,7 +551,7 @@ PHP_METHOD(opencv_mat, plus)
  * Mat->divide()
  * @param execute_data
  * @param return_value
- */
+
 PHP_METHOD(opencv_mat, divide)
 {
     zval instance;
@@ -573,7 +578,7 @@ PHP_METHOD(opencv_mat, divide)
  * Mat->setTo(Scalar $value)
  * @param execute_data
  * @param return_value
- */
+
 PHP_METHOD(opencv_mat, set_to)
 {
     zval *value_zval;
@@ -594,7 +599,8 @@ PHP_METHOD(opencv_mat, set_to)
  * CV\Mat::add()
  * @param execute_data
  * @param return_value
- */
+*/
+
 PHP_METHOD(opencv_mat, add)
 {
     zval *value1_zval, *value2_zval;
@@ -612,9 +618,9 @@ PHP_METHOD(opencv_mat, add)
     object_init_ex(&instance, opencv_mat_ce);
     opencv_mat_object *obj = Z_PHP_MAT_OBJ_P(&instance);
 
-    Mat im = *value1_obj->mat + *value2_obj->mat;
+    //Mat im = *value1_obj->mat + *value2_obj->mat;
 
-    obj->mat=new Mat(im);
+    //obj->mat=new Mat(im);
     //update php Mat object property
     opencv_mat_update_property_by_c_mat(&instance, obj->mat);
 
@@ -638,11 +644,15 @@ PHP_METHOD(opencv_mat, subtract)
     object_init_ex(&instance, opencv_mat_ce);
     opencv_mat_object *obj = Z_PHP_MAT_OBJ_P(&instance);
 
-    Mat im = *value1_obj->mat - *value2_obj->mat;
+    if (value1_obj != NULL && value2_obj != NULL)
+    {
+        //Mat im = (*value1_obj->mat) - (*value2_obj->mat);
+    }
+   
 
-    obj->mat=new Mat(im);
+    //obj->mat=new Mat(im);
     //update php Mat object property
-    opencv_mat_update_property_by_c_mat(&instance, obj->mat);
+    //opencv_mat_update_property_by_c_mat(&instance, obj->mat);*/
 
     RETURN_ZVAL(&instance,0,0); //return php Mat object
 }
@@ -657,7 +667,7 @@ const zend_function_entry opencv_mat_methods[] = {
         PHP_ME(opencv_mat, depth, NULL, ZEND_ACC_PUBLIC)
         PHP_ME(opencv_mat, channels, NULL, ZEND_ACC_PUBLIC)
         PHP_ME(opencv_mat, empty, NULL, ZEND_ACC_PUBLIC)
-        PHP_ME(opencv_mat, print, NULL, ZEND_ACC_PUBLIC)
+        /*PHP_ME(opencv_mat, print, NULL, ZEND_ACC_PUBLIC)
         PHP_ME(opencv_mat, size, NULL, ZEND_ACC_PUBLIC)
         PHP_ME(opencv_mat, clone, NULL, ZEND_ACC_PUBLIC)
         PHP_ME(opencv_mat, ones, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
@@ -674,11 +684,11 @@ const zend_function_entry opencv_mat_methods[] = {
         PHP_ME(opencv_mat, plus, NULL, ZEND_ACC_PUBLIC)
         PHP_ME(opencv_mat, divide, NULL, ZEND_ACC_PUBLIC)
         PHP_MALIAS(opencv_mat, setTo ,set_to, NULL, ZEND_ACC_PUBLIC)
-        PHP_ME(opencv_mat, add , NULL, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+        PHP_ME(opencv_mat, add , NULL, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)*/
         PHP_ME(opencv_mat, subtract , NULL, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
         PHP_FE_END
 };
-/* }}} */
+/* }}}
 
 
 
@@ -717,7 +727,7 @@ void opencv_mat_init(int module_number){
     memcpy(&opencv_mat_object_handlers,
            zend_get_std_object_handlers(), sizeof(zend_object_handlers));
     opencv_mat_object_handlers.clone_obj = nullptr;
-    opencv_mat_object_handlers.write_property = opencv_mat_write_property;
+    opencv_mat_object_handlers.write_property = reinterpret_cast<zend_object_write_property_t>(opencv_mat_write_property);
 
     zend_declare_property_null(opencv_mat_ce,"type",sizeof("type") - 1,ZEND_ACC_PRIVATE);//private Mat->type
     opencv_mat_object_handlers.free_obj = opencv_mat_free_obj;
