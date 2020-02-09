@@ -1,6 +1,6 @@
 /* This file automatically generated from script/confutils.js */
 var MODE_PHPIZE = true;
-var PHP_DIR = "G:\\php\\php-devel-pack-7.4.2-Win32-vc15-x86"
+var PHP_DIR = "G:\\php\\php-devel-pack-7.4.2-Win32-vc15-x64"
 var PHP_PREFIX = "C:\\php"
 var PHP_ANALYZER = 'disabled';
 var PHP_PGO = 'no';
@@ -201,7 +201,7 @@ var WINVER = "0x0601"; /* 7/2008r2 */
 var MINBISON = "3.0.0";
 
 // There's a minimum requirement for re2c..
-var MINRE2C = "0.13.4";
+//var MINRE2C = "0.13.4";
 
 /* Store the enabled extensions (summary + QA check) */
 var extensions_enabled = new Array();
@@ -3143,7 +3143,7 @@ function toolset_setup_project_tools()
 		ERROR('sed is required')
 	}
 
-	/*
+	/*REMOVE RE2C
 	var RE2C = PATH_PROG('re2c');
 	if (RE2C) {
 		var RE2CVERS = probe_binary(RE2C, "version");
@@ -3166,6 +3166,7 @@ function toolset_setup_project_tools()
 		ERROR('re2c is required')
 	}
 	*/
+
 	PATH_PROG('zip');
 	PATH_PROG('lemon');
 	PATH_PROG('7za');
@@ -4141,7 +4142,7 @@ if (PHP_OPENCV != "no") {
     ADD_FLAG("CFLAGS_OPENCV", "/D __STDC_LIMIT_MACROS");
 
     //检查opencv链接库，如果存在返回路径
-    CHECK_LIB("opencv_world420.lib", "opencv","libx86");
+    CHECK_LIB("opencv_world420.lib", "opencv","libx64");
     CHECK_HEADER_ADD_INCLUDE("opencv2\\opencv.hpp", "CFLAGS_OPENCV", "include");
 
     opencv_source_file="opencv.cc \
