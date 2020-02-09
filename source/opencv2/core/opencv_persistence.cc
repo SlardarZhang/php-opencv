@@ -41,7 +41,7 @@ zend_object* opencv_file_storage_create_handler(zend_class_entry *type){
  * @param return_value
  */
 PHP_METHOD(opencv_file_storage, __construct){
-    /*char *source;
+    char *source;
     long source_len = 0, flags = FileStorage::READ;
     FileStorage *fs;
     if (zend_parse_parameters(ZEND_NUM_ARGS(), "|sl", &source, &source_len, &flags) == FAILURE) {
@@ -52,9 +52,8 @@ PHP_METHOD(opencv_file_storage, __construct){
     }else{
         fs = new FileStorage(source, (int)flags);
     }
-    opencv_file_storage_obje
-    ct *obj = Z_PHP_FILE_STORAGE_OBJ_P(getThis());
-    obj->fileStorage = fs;*/
+    opencv_file_storage_object *obj = Z_PHP_FILE_STORAGE_OBJ_P(getThis());
+    obj->fileStorage = fs;
 }
 
 /**
@@ -64,7 +63,7 @@ PHP_METHOD(opencv_file_storage, __construct){
  * @param return_value
  */
 PHP_METHOD(opencv_file_storage, open){
-    /*char *source;
+    char *source;
     long source_len = 0, flags;
     //FileStorage *fs;
     if (zend_parse_parameters(ZEND_NUM_ARGS(), "sl", &source, &source_len, &flags) == FAILURE) {
@@ -72,11 +71,11 @@ PHP_METHOD(opencv_file_storage, open){
     }
     opencv_file_storage_object *obj = Z_PHP_FILE_STORAGE_OBJ_P(getThis());
     obj->fileStorage->open(source, (int)flags);
-    RETURN_NULL();*/
+    RETURN_NULL();
 }
 
 PHP_METHOD(opencv_file_storage, write){
-    /*char *name;
+    char *name;
     long name_len = 0;
     //char *error_message;
     zval *val_zval;
@@ -140,7 +139,7 @@ PHP_METHOD(opencv_file_storage, write){
             //only Mat
             if(Z_OBJCE_P(val_zval) == opencv_mat_ce){
                 opencv_mat_object *mat_object = Z_PHP_MAT_OBJ_P(val_zval);
-                //fs<< name << *(mat_object->mat);
+                fs<< name << *(mat_object->mat);
             }else{
                 opencv_throw_exception("Can't write file object only Mat.");
             }
@@ -156,11 +155,11 @@ PHP_METHOD(opencv_file_storage, write){
             break;
     }
     RETURN_NULL();
-    */
+
 }
 
 PHP_METHOD(opencv_file_storage, read){
-    /*char *name;
+    char *name;
     long name_len = 0, value_type;
     //char *error_message;
     FileStorage fs;
@@ -206,7 +205,7 @@ PHP_METHOD(opencv_file_storage, read){
         default:
             RETURN_NULL();
             break;
-    }*/
+    }
 }
 
 PHP_METHOD(opencv_file_storage, release){

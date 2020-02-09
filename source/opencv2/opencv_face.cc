@@ -21,7 +21,7 @@ zend_class_entry *opencv_face_recognizer_ce;
 #ifdef HAVE_OPENCV_FACE
 
 #include <opencv2/face.hpp>
-using namespace face;
+using namespace cv::face;
 
 #include "face/opencv_facerec.h"
 
@@ -50,8 +50,7 @@ void opencv_face_init(int module_number){
 #else
 
 void opencv_face_init(int module_number){
-
+	
 }
 
 #endif
-

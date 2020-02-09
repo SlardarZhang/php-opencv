@@ -28,9 +28,11 @@ extern void opencv_mat_init(int module_number);
 
 extern zend_class_entry *opencv_mat_ce;
 
+#define Z_PHP_MAT_OBJ_P(zv)  get_mat_obj(Z_OBJ_P(zv))
+
 typedef struct _opencv_mat_object{
-    Mat *mat;
     zend_object std;
+    Mat *mat;
 }opencv_mat_object;
 
 
@@ -39,10 +41,8 @@ typedef struct _opencv_mat_object{
  * @return
  */
 static inline opencv_mat_object* get_mat_obj(zend_object *obj) {
-    return (opencv_mat_object*)((char *) obj - XtOffsetOf(opencv_mat_object, std));
+    return (opencv_mat_object*)((char*)(obj) - XtOffsetOf(opencv_mat_object, std));
 }
-
-#define Z_PHP_MAT_OBJ_P(zv)  get_mat_obj(Z_OBJ_P(zv))
 
 void opencv_mat_update_property_by_c_mat(zval *z,Mat *mat);
 

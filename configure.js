@@ -1,6 +1,6 @@
 /* This file automatically generated from script/confutils.js */
 var MODE_PHPIZE = true;
-var PHP_DIR = "G:\\php\\php-devel-pack-7.4.2-nts-Win32-vc15-x64"
+var PHP_DIR = "G:\\php\\php-devel-pack-7.4.2-Win32-vc15-x86"
 var PHP_PREFIX = "C:\\php"
 var PHP_ANALYZER = 'disabled';
 var PHP_PGO = 'no';
@@ -137,6 +137,8 @@ PHP_XMLWRITER=true;
 PHP_XMLWRITER_SHARED=false;
 PHP_XSL=true;
 PHP_XSL_SHARED=true;
+PHP_HELLOWORLD=true;
+PHP_HELLOWORLD_SHARED=true;
 PHP_OPENCV=true;
 PHP_OPENCV_SHARED=true;
 // Utils for configure script
@@ -199,7 +201,7 @@ var WINVER = "0x0601"; /* 7/2008r2 */
 var MINBISON = "3.0.0";
 
 // There's a minimum requirement for re2c..
-//var MINRE2C = "0.13.4";
+var MINRE2C = "0.13.4";
 
 /* Store the enabled extensions (summary + QA check) */
 var extensions_enabled = new Array();
@@ -3888,10 +3890,10 @@ function setup_verbosity()
 		CMD_MOD2 = "@";
 	}
 }
-var PHP_ZTS ="no"
+var PHP_ZTS ="yes"
 var PHP_DEBUG="no"
-var PHP_DLL_LIB ="php7.lib"
-var PHP_DLL ="php7.dll"
+var PHP_DLL_LIB ="php7ts.lib"
+var PHP_DLL ="php7ts.dll"
 var PHP_SECURITY_FLAGS ="yes"
 var PHP_ANALYZER ="no"
 var PHP_PGO ="no"
@@ -4139,16 +4141,16 @@ if (PHP_OPENCV != "no") {
     ADD_FLAG("CFLAGS_OPENCV", "/D __STDC_LIMIT_MACROS");
 
     //检查opencv链接库，如果存在返回路径
-    CHECK_LIB("opencv_world420.lib;ade.lib;opencv_ts420.lib;opencv_world420d.lib", "opencv","D:\\opencv\\libx64");
-    CHECK_HEADER_ADD_INCLUDE("opencv2\\opencv.hpp", "CFLAGS_OPENCV", "D:\\opencv\\include");
+    CHECK_LIB("opencv_world420.lib", "opencv","libx86");
+    CHECK_HEADER_ADD_INCLUDE("opencv2\\opencv.hpp", "CFLAGS_OPENCV", "include");
 
     opencv_source_file="opencv.cc \
                 opencv_exception.cc \
                 source\\opencv2\\core\\hal\\opencv_interface.cc \
                 source\\opencv2\\core\\opencv_base.cc \
                 source\\opencv2\\core\\opencv_cvdef.cc \
-                source\\opencv2\\core\\opencv_type.cc \ "
-                /*source\\opencv2\\core\\opencv_utility.cc \
+                source\\opencv2\\core\\opencv_type.cc \
+                source\\opencv2\\core\\opencv_utility.cc \
                 source\\opencv2\\core\\opencv_persistence.cc \
                 source\\opencv2\\core\\opencv_mat.cc \
                 source\\opencv2\\face\\opencv_facerec.cc \
@@ -4159,7 +4161,7 @@ if (PHP_OPENCV != "no") {
                 source\\opencv2\\opencv_imgproc.cc \
                 source\\opencv2\\opencv_ml.cc \
                 source\\opencv2\\opencv_objdetect.cc \
-                source\\opencv2\\opencv_videoio.cc"*/
+                source\\opencv2\\opencv_videoio.cc"
 
 
     EXTENSION("opencv", opencv_source_file,"yes");

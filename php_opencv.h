@@ -50,6 +50,7 @@ extern zend_module_entry opencv_module_entry;
 #define OPENCV_ML_NS ZEND_NS_NAME(OPENCV_NS,"ML")
 
 #define OPENCV_CONNECT(text1,text2) text1##text2
+#define HAVE_OPENCV_FACE 1 //Enable OpenCV Face
 
 
 //#define OPENCV_BEGIN_ARG_INFO		ZEND_BEGIN_ARG_INFO
