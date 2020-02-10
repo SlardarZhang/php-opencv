@@ -366,8 +366,6 @@ public:
     virtual double getThreshold() const = 0;
     /** @brief Sets threshold of model */
     virtual void setThreshold(double val) = 0;
-
-	CV_WRAP virtual std::map<int, double> getPredictMap(InputArray src) const;
 protected:
     // Stored pairs "label id - string info"
     std::map<int, String> _labelsInfo;
