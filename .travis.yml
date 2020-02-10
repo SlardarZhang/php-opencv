@@ -7,9 +7,8 @@ before_script:
   - curl -o /C/php-devel-pack-7.4.2-Win32-vc15-x64.zip https://windows.php.net/downloads/releases/php-devel-pack-7.4.2-Win32-vc15-x64.zip
   - 7z x /C/php-devel-pack-7.4.2-Win32-vc15-x64.zip
   - export PATH=/C/php-devel-pack-7.4.2-Win32-vc15-x64/:$PATH
-
 script:
-  - cmd.exe php-devel-pack-7.4.2-Win32-vc15-x64\phpize.bat
+  - cmd.exe phpize.bat
   - cmd.exe configure.bat --with-opencv
   - nmake
 install: skip
