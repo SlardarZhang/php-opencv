@@ -1,0 +1,17 @@
+language: cpp
+os: windows
+compiler: clang
+before_install: skip
+before_script: 
+  - curl https://windows.php.net/downloads/releases/php-devel-pack-7.4.2-Win32-vc15-x64.zip
+  - 7z x php-devel-pack-7.4.2-Win32-vc15-x64.zip
+  - choco install re2c
+script:
+  - cmd.exe php-devel-pack-7.4.2-Win32-vc15-x64\phpize.bat
+  - cmd.exe configure.bat --with-opencv
+  - nmake
+install: skip
+after_success: skip
+after_script: skip
+
+
