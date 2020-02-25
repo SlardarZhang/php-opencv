@@ -1,3 +1,4 @@
+<h1>OpenCV Check:</h1>
 <?php
 $br = (php_sapi_name() == "cli")? "":"<br>";
 

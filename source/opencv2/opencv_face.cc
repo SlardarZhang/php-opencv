@@ -24,6 +24,8 @@ zend_class_entry *opencv_face_recognizer_ce;
 using namespace cv::face;
 
 #include "face/opencv_facerec.h"
+#include "face/opencv_lbph.h"
+#include "face/opencv_fisherface.h"
 
 
 /**
@@ -44,6 +46,7 @@ void opencv_face_recognizer_init(int module_number){
 void opencv_face_init(int module_number){
     opencv_face_recognizer_init(module_number);
     opencv_lbph_face_recognizer_init(module_number);
+    opencv_fisher_face_recognizer_init(module_number);
     opencv_base_face_recognizer_init(module_number);
 }
 

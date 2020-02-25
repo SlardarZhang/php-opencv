@@ -66,7 +66,7 @@ $faceLabel = $faceRecognizer->predict($gray);
 
 result:
 
-![predict](tests/face_recognizer.jpg)
+![predict](https://raw.githubusercontent.com/hihozhou/php-opencv/master/tests/face_recognizer.jpg)
 
 
 ### Image Processing
@@ -85,7 +85,7 @@ waitkey(0);
 
 result:
 
-![Obama](tests/Obama.png)
+![Obama](https://raw.githubusercontent.com/hihozhou/php-opencv/master/tests/Obama.png)
 
 Load image by gray
 
@@ -97,7 +97,7 @@ $gray = cvtColor($im, COLOR_BGR2GRAY);
 
 ```
 
-![Obama_gray](tests/Obama_gray.png)
+![Obama_gray](https://raw.githubusercontent.com/hihozhou/php-opencv/master/tests/Obama_gray.png)
 
 
 You can draw something.  
@@ -125,7 +125,7 @@ imwrite('./tests/ellipse.png',$mat);
 
 result:
 
-![ellipse](tests/ellipse.png)
+![ellipse](https://raw.githubusercontent.com/hihozhou/php-opencv/master/tests/ellipse.png)
 
 
 
