@@ -165,7 +165,7 @@ PHP_METHOD(opencv_fisher_face_recognizer, diff)
 		}
 		else
 		{
-			float diff = 100.0F - static_cast<float>(it->second);
+			float diff = (2618.0F - static_cast<float>(it->second))/2618.0F;
 			if (diff < 0.0F)
 			{
 				RETURN_DOUBLE(0.0F);
