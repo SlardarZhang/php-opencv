@@ -131,7 +131,7 @@ PHP_MINFO_FUNCTION(opencv)
 	php_info_print_table_start();
     php_info_print_table_row(2, "OpenCV Support", "enabled");
     php_info_print_table_row(2, "OpenCV Version", PHP_OPENCV_VERSION);
-    //php_info_print_table_row(2, "OpenCV Architecture", "x86");
+    //php_info_print_table_row(2, "OpenCV Architecture", "x64");
     php_info_print_table_row(2, "PHP OpenCV Version", PHP_OPENCV_VERSION);
     //php_info_print_table_row(2, "PHP OpenCV Thread Safety", "enabled");
 	php_info_print_table_end();
