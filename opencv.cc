@@ -62,69 +62,6 @@ ZEND_DECLARE_MODULE_GLOBALS(opencv)
 /* True global resources - no need for thread safety here */
 static int le_opencv;
 
-/* {{{ PHP_INI
- */
-/* Remove comments and fill if you need to have entries in php.ini
-PHP_INI_BEGIN()
-    STD_PHP_INI_ENTRY("opencv.global_value",      "42", PHP_INI_ALL, OnUpdateLong, global_value, zend_opencv_globals, opencv_globals)
-    STD_PHP_INI_ENTRY("opencv.global_string", "foobar", PHP_INI_ALL, OnUpdateString, global_string, zend_opencv_globals, opencv_globals)
-PHP_INI_END()
-*/
-/* }}} */
-
-/* Remove the following function when you have successfully modified config.m4
-   so that your module can be compiled into PHP, it exists only for testing
-   purposes. */
-
-/* Every user-visible function in PHP should document itself in the source */
-/* {{{ proto string confirm_opencv_compiled(string arg)
-   Return a string to confirm that the module is compiled in */
-PHP_FUNCTION(confirm_opencv_compiled)
-{
-    char *arg = NULL;
-	size_t arg_len;//, len;
-	zend_string *strg;
-
-	if (zend_parse_parameters(ZEND_NUM_ARGS(), "s", &arg, &arg_len) == FAILURE) {
-		return;
-	}
-
-	strg = strpprintf(0, "Congratulations! You have successfully modified ext/%.78s/config.m4. Module %.78s is now compiled into PHP.", "opencv", arg);
-
-	RETURN_STR(strg);
-}
-
-
-PHP_FUNCTION(opencv_test)
-{
-    std::cout<<"This C++ output!"<<std::endl;
-    php_printf("This is opencv extension!");
-    Mat mat = cv::imread("C:\\Users\\hiho\\Desktop\\test.jpg");
-    cv::imshow("test",mat);
-    cv::waitKey(0);
-	RETURN_TRUE;
-}
-
-
-/* }}} */
-/* The previous line is meant for vim and emacs, so it can correctly fold and
-   unfold functions in source code. See the corresponding marks just before
-   function definition, where the functions purpose is also documented. Please
-   follow this convention for the convenience of others editing your code.
-*/
-
-
-/* {{{ php_opencv_init_globals
- */
-/* Uncomment this function if you have INI entries
-static void php_opencv_init_globals(zend_opencv_globals *opencv_globals)
-{
-	opencv_globals->global_value = 0;
-	opencv_globals->global_string = NULL;
-}
-*/
-/* }}} */
-
 
 /* {{{ PHP_MINIT_FUNCTION
  */
@@ -192,7 +129,9 @@ PHP_RSHUTDOWN_FUNCTION(opencv)
 PHP_MINFO_FUNCTION(opencv)
 {
 	php_info_print_table_start();
-	php_info_print_table_header(2, "opencv support", "enabled");
+    php_info_print_table_row(2, "OpenCV Support", "enabled");
+    php_info_print_table_row(2, "OpenCV Version", OPENCV_VERSION);
+    php_info_print_table_row(2, "PHP OpenCV Version", PHP_OPENCV_VERSION);
 	php_info_print_table_end();
 
 	/* Remove comments if you have entries in php.ini
@@ -206,8 +145,6 @@ PHP_MINFO_FUNCTION(opencv)
  * Every user visible function must have an entry in opencv_functions[].
  */
 const zend_function_entry opencv_functions[] = {
-	PHP_FE(confirm_opencv_compiled,	NULL)		/* For testing, remove later. */
-	PHP_FE(opencv_test,	NULL)
     ZEND_NS_NAMED_FE(OPENCV_NS, CV_8UC, ZEND_FN(opencv_cv_8uc), NULL)
     ZEND_NS_NAMED_FE(OPENCV_NS, CV_8SC, ZEND_FN(opencv_cv_8sc), NULL)
     ZEND_NS_NAMED_FE(OPENCV_NS, CV_16UC, ZEND_FN(opencv_cv_16uc), NULL)

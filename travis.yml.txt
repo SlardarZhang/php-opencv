@@ -1,0 +1,12 @@
+language: cpp
+os: windows
+compiler: gcc
+before_install: skip
+env:
+  - LINUX_PATH="/c/Program Files (x86)/Windows Kits/10/bin/x64/:/c/Program Files (x86)/Microsoft Visual Studio/2017/BuildTools/VC/Tools/MSVC/14.16.27023/bin/Hostx64/x64/:/c/ProgramData/chocolatey/lib/winflexbison3/tools/"
+  - WIN_BIN="C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Tools\MSVC\14.16.27023\bin\Hostx64\x64\;C:\Program Files (x86)\Windows Kits\10\bin\x64\;"
+before_script: skip
+script: skip
+install: skip
+after_success: skip
+after_script: skip

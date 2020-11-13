@@ -12,8 +12,8 @@
 
 ## Requirements
 
-- OpenCV 4.0.0+
-- PHP7.0+
+- OpenCV 4.5.0
+- PHP7.4.12
 
 
 

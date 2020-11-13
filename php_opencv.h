@@ -33,7 +33,8 @@ extern "C" {
 extern zend_module_entry opencv_module_entry;
 #define phpext_opencv_ptr &opencv_module_entry
 
-#define PHP_OPENCV_VERSION "0.1.0" /* Replace with version number for your extension */
+#define PHP_OPENCV_VERSION "1.0.0"
+#define OPENCV_VERSION "4.5.0"
 
 #ifdef PHP_WIN32
 #	define PHP_OPENCV_API __declspec(dllexport)
