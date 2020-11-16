@@ -156,7 +156,9 @@ PHP_METHOD(opencv_fisher_face_recognizer, diff)
 	opencv_mat_object *src_object = Z_PHP_MAT_OBJ_P(src_zval);
 	try
 	{
-		std::map<int, double> map = obj->faceRecognizer->getPredictMap(*src_object->mat);
+		Ptr<StandardCollector> collector = StandardCollector::create(obj->faceRecognizer->getThreshold());
+		obj->faceRecognizer->predict(*src_object->mat, collector);
+		std::map<int, double> map = collector->getResultsMap();
 		std::map<int,double>::iterator it = map.find(label);
 
 		if (it == map.end())
@@ -193,7 +195,9 @@ PHP_METHOD(opencv_fisher_face_recognizer, getMap)
 	opencv_mat_object *src_object = Z_PHP_MAT_OBJ_P(src_zval);
 	try
 	{
-		std::map<int, double> map = obj->faceRecognizer->getPredictMap(*src_object->mat);
+		Ptr<StandardCollector> collector = StandardCollector::create(obj->faceRecognizer->getThreshold());
+		obj->faceRecognizer->predict(*src_object->mat, collector);
+		std::map<int, double> map = collector->getResultsMap();
 
 		array_init(return_value);
 		for (std::map<int,double>::iterator it=map.begin(); it != map.end(); ++it)
@@ -218,7 +222,9 @@ PHP_METHOD(opencv_fisher_face_recognizer, getSortedMap)
 	opencv_mat_object *src_object = Z_PHP_MAT_OBJ_P(src_zval);
 	try
 	{
-		std::map<int, double> map = obj->faceRecognizer->getPredictMap(*src_object->mat);
+		Ptr<StandardCollector> collector = StandardCollector::create(obj->faceRecognizer->getThreshold());
+		obj->faceRecognizer->predict(*src_object->mat, collector);
+		std::map<int, double> map = collector->getResultsMap();
 
 		std::vector<FACE_PAIR> vector = std::vector<FACE_PAIR>(map.begin(), map.end());
 		std::sort(vector.begin(), vector.end(), face_pair_cmp);
