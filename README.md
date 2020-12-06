@@ -29,6 +29,8 @@ docker pull hihozhou/php-opencv
 
 ### Compile and install php-opencv extension
 
+## You need rename the correct config file to config.w32 firstly
+
 ```bash
 git clone https://github.com/hihozhou/php-opencv.git
 cd php-opencv
