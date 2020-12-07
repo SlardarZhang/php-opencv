@@ -17,26 +17,26 @@ if (PHP_OPENCV != "no") {
     CHECK_LIB("opencv_world450.lib", "opencv","libx64");
     CHECK_HEADER_ADD_INCLUDE("opencv2\\opencv.hpp", "CFLAGS_OPENCV", "include");
 
-    opencv_source_file="php-7\\opencv.cc \
-                php-7\\opencv_exception.cc \
-                php-7\\source\\opencv2\\core\\hal\\opencv_interface.cc \
-                php-7\\source\\opencv2\\core\\opencv_base.cc \
-                php-7\\source\\opencv2\\core\\opencv_cvdef.cc \
-                php-7\\source\\opencv2\\core\\opencv_type.cc \
-                php-7\\source\\opencv2\\core\\opencv_utility.cc \
-                php-7\\source\\opencv2\\core\\opencv_persistence.cc \
-                php-7\\source\\opencv2\\core\\opencv_mat.cc \
-                php-7\\source\\opencv2\\face\\opencv_facerec.cc \
-                php-7\\source\\opencv2\\face\\opencv_lbph.cc \
-                php-7\\source\\opencv2\\face\\opencv_fisherface.cc \
-                php-7\\source\\opencv2\\opencv_face.cc \
-                php-7\\source\\opencv2\\opencv_core.cc \
-                php-7\\source\\opencv2\\opencv_highgui.cc \
-                php-7\\source\\opencv2\\opencv_imgcodecs.cc \
-                php-7\\source\\opencv2\\opencv_imgproc.cc \
-                php-7\\source\\opencv2\\opencv_ml.cc \
-                php-7\\source\\opencv2\\opencv_objdetect.cc \
-                php-7\\source\\opencv2\\opencv_videoio.cc"
+    opencv_source_file="php-8\\opencv.cc \
+                php-8\\opencv_exception.cc \
+                php-8\\source\\opencv2\\core\\hal\\opencv_interface.cc \
+                php-8\\source\\opencv2\\core\\opencv_base.cc \
+                php-8\\source\\opencv2\\core\\opencv_cvdef.cc \
+                php-8\\source\\opencv2\\core\\opencv_type.cc \
+                php-8\\source\\opencv2\\core\\opencv_utility.cc \
+                php-8\\source\\opencv2\\core\\opencv_persistence.cc \
+                php-8\\source\\opencv2\\core\\opencv_mat.cc \
+                php-8\\source\\opencv2\\face\\opencv_facerec.cc \
+                php-8\\source\\opencv2\\face\\opencv_lbph.cc \
+                php-8\\source\\opencv2\\face\\opencv_fisherface.cc \
+                php-8\\source\\opencv2\\opencv_face.cc \
+                php-8\\source\\opencv2\\opencv_core.cc \
+                php-8\\source\\opencv2\\opencv_highgui.cc \
+                php-8\\source\\opencv2\\opencv_imgcodecs.cc \
+                php-8\\source\\opencv2\\opencv_imgproc.cc \
+                php-8\\source\\opencv2\\opencv_ml.cc \
+                php-8\\source\\opencv2\\opencv_objdetect.cc \
+                php-8\\source\\opencv2\\opencv_videoio.cc"
 
 
     EXTENSION("opencv", opencv_source_file,"yes");
